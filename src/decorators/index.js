@@ -1,4 +1,7 @@
-import { Star, Rect, Circle, RoundedRect, Triangle, Arrow } from '../shapes'
+import {
+  Star, Rect, Circle, RoundedRect, Triangle, Arrow, Custom
+} from '../shapes'
+import Image from '@/components/Image'
 import { ResizeDecorator } from 'docbone'
 
 const resizeOptions = {
@@ -23,6 +26,7 @@ const resizeOptions = {
       left: dragState.left,
       top: dragState.top
     })
+    this.updateFitMode && this.updateFitMode()
   },
   handleResizeEnd (dragState) {
     const { node, modelEditor } = this
@@ -54,3 +58,5 @@ export const CircleDecorator = ResizeDecorator(Circle, resizeOptions)
 export const RoundedRectDecorator = ResizeDecorator(RoundedRect, resizeOptions)
 export const TriangleDecorator = ResizeDecorator(Triangle, resizeOptions)
 export const ArrowDecorator = ResizeDecorator(Arrow, resizeOptions)
+export const CustomDecorator = ResizeDecorator(Custom, resizeOptions)
+export const ImageDecorator = ResizeDecorator(Image, resizeOptions)

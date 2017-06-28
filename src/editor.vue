@@ -1,8 +1,5 @@
 <template>
   <div style="min-width: 1200px; height: 100%;">
-    <header class="se-header">
-      Simple Editor
-    </header>
     <div class="simple-editor">
       <div class="se-toolbar">
         <button class="se-btn"
@@ -74,14 +71,13 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <style>
   .simple-editor {
     display: flex;
     flex-direction: row;
-    height: calc(100% - 60px);
+    height: 100%;
     background-color: #B3B3B3;
   }
 
@@ -159,8 +155,8 @@
 
   .se-document-editor {
     position: absolute;
-    width: 800px;
-    height: 600px;
+    width: 590px;
+    height: 800px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -187,76 +183,80 @@
 </style>
 
 <script>
-import 'docbone/dist/docbone.css'
-import ModelEditor from './model-editor'
-import {
-  StarDecorator,
-  ArrowDecorator,
-  RectDecorator,
-  CircleDecorator,
-  RoundedRectDecorator,
-  TriangleDecorator
-} from './decorators'
-
-import AttrsEditor from './attrs-editor'
-import { utils } from 'docbone'
-import storage from './storage'
-require('./assets/iconfont.css')
-
-export default {
-  name: 'app',
-
-  components: {
+  import 'docbone/dist/docbone.css'
+  import ModelEditor from './model-editor'
+  import {
     StarDecorator,
     ArrowDecorator,
     RectDecorator,
     CircleDecorator,
     RoundedRectDecorator,
     TriangleDecorator,
-    AttrsEditor
-  },
+    ImageDecorator,
+    CustomDecorator
+  } from './decorators'
 
-  created () {
-    this.modelEditor.load(storage.get())
-  },
+  import AttrsEditor from './attrs-editor'
+  import { utils } from 'docbone'
+  import storage from './storage'
+  require('./assets/iconfont.css')
 
-  mounted () {
-    utils.rectSelect(this.$refs.editor, ({ left, top, width, height }) => {
-      const { selectedType, modelEditor } = this
-      if (!selectedType) return
+  export default {
+    name: 'app',
 
-      const node = modelEditor.createElement(selectedType, {
-        width, height, left, top
-      })
-      modelEditor.appendNode(node, modelEditor.root)
-    })
-  },
+    components: {
+      StarDecorator,
+      ArrowDecorator,
+      RectDecorator,
+      CircleDecorator,
+      RoundedRectDecorator,
+      TriangleDecorator,
+      ImageDecorator,
+      CustomDecorator,
+      AttrsEditor
+    },
 
-  methods: {
-    handlePropChange (node, prop, val) {
-      this.modelEditor.setAttr(node, {
-        [prop]: val
+    created () {
+      this.modelEditor.load(storage.get())
+    },
+
+    mounted () {
+      utils.rectSelect(this.$refs.editor, ({ left, top, width, height }) => {
+        const { selectedType, modelEditor } = this
+        if (!selectedType) return
+
+        const node = modelEditor.createElement(selectedType, {
+          width, height, left, top
+        })
+        modelEditor.appendNode(node, modelEditor.root)
       })
     },
-    save () {
-      storage.set(this.modelEditor.serialize())
-    }
-  },
 
-  watch: {
-    'modelEditor.currentNode' (val) {
-      this.schema = val ? this.modelEditor.getElementSchema(val.tagName) : null
-    }
-  },
+    methods: {
+      handlePropChange (node, prop, val) {
+        this.modelEditor.setAttr(node, {
+          [prop]: val
+        })
+      },
+      save () {
+        storage.set(this.modelEditor.serialize())
+      }
+    },
 
-  data () {
-    const modelEditor = new ModelEditor()
+    watch: {
+      'modelEditor.currentNode' (val) {
+        this.schema = val ? this.modelEditor.getElementSchema(val.tagName) : null
+      }
+    },
 
-    return {
-      modelEditor,
-      schema: null,
-      selectedType: null
+    data () {
+      const modelEditor = new ModelEditor()
+
+      return {
+        modelEditor,
+        schema: null,
+        selectedType: null
+      }
     }
   }
-}
 </script>
