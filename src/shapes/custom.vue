@@ -64,11 +64,7 @@
               } else if (props['width'] && props['height']) {
                 this.viewBox = `0 0 ${props.width} ${props.height}`
               }
-
-              console.log(props)
             }
-            const match = content.match()
-            console.log(match, xhr.responseText)
           }
         }
         xhr.send()

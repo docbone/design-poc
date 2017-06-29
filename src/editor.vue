@@ -193,7 +193,8 @@
     RoundedRectDecorator,
     TriangleDecorator,
     ImageDecorator,
-    CustomDecorator
+    CustomDecorator,
+    TextDecorator
   } from './decorators'
 
   import AttrsEditor from './attrs-editor'
@@ -213,6 +214,7 @@
       TriangleDecorator,
       ImageDecorator,
       CustomDecorator,
+      TextDecorator,
       AttrsEditor
     },
 

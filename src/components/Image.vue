@@ -52,8 +52,6 @@ export default {
     updateFitMode () {
       const { width, height, imageWidth, imageHeight } = this
 
-      console.log('this.updateFitMode', width, height, imageWidth, imageHeight)
-
       if (imageWidth !== null) {
         this.fitMode = width / height > imageWidth / imageHeight ? 'width' : 'height'
       } else {

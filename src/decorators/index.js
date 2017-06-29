@@ -1,8 +1,9 @@
 import {
-  Star, Rect, Circle, RoundedRect, Triangle, Arrow, Custom
+  Star, Rect, Circle, RoundedRect, Triangle, Arrow, Custom, Text
 } from '../shapes'
 import Image from '@/components/Image'
 import { ResizeDecorator } from 'docbone'
+import EditDecorator from './edit'
 
 const resizeOptions = {
   handleDragEnd (dragState) {
@@ -60,3 +61,4 @@ export const TriangleDecorator = ResizeDecorator(Triangle, resizeOptions)
 export const ArrowDecorator = ResizeDecorator(Arrow, resizeOptions)
 export const CustomDecorator = ResizeDecorator(Custom, resizeOptions)
 export const ImageDecorator = ResizeDecorator(Image, resizeOptions)
+export const TextDecorator = EditDecorator(Text, resizeOptions)

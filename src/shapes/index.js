@@ -5,6 +5,7 @@ import Rect from './rect.vue'
 import RoundedRect from './rounded-rect.vue'
 import Triangle from './triangle.vue'
 import Custom from './custom'
+import Text from './Text'
 
 export {
   Star,
@@ -13,5 +14,6 @@ export {
   Rect,
   RoundedRect,
   Triangle,
-  Custom
+  Custom,
+  Text
 }
